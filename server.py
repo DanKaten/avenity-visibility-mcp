@@ -895,7 +895,7 @@ if __name__ == "__main__":
     if transport == "http":
         # Hosted mode — used by Render, Glama, Smithery
         port = int(os.getenv("PORT", 8000))
-        mcp.run(transport="streamable-http", host="0.0.0.0", port=port)
+        mcp.run(transport="streamable-http", port=port)
     else:
         # Local mode — used by Claude Desktop
         mcp.run()
