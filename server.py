@@ -898,6 +898,11 @@ if __name__ == "__main__":
         port = int(os.getenv("PORT", 8000))
         mcp.settings.host = "0.0.0.0"
         mcp.settings.port = port
+        # Disable DNS rebinding protection — not needed behind Render/Cloudflare TLS proxy
+        from mcp.server.transport_security import TransportSecuritySettings
+        mcp.settings.transport_security = TransportSecuritySettings(
+            enable_dns_rebinding_protection=False
+        )
         mcp.run(transport="streamable-http")
     else:
         # Local mode — used by Claude Desktop
