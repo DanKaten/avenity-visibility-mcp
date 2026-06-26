@@ -96,7 +96,7 @@ These aren't opinions — they're what shows up in research on how ChatGPT, Perp
 pip install mcp ddgs httpx beautifulsoup4 lxml
 ```
 
-**GitHub:** [avenity-visibility-mcp](https://github.com/dankavenity/avenity-visibility-mcp)
+**GitHub:** [avenity-visibility-mcp](https://github.com/DanKaten/avenity-visibility-mcp)
 
 ---
 
