@@ -2,9 +2,9 @@
   "name": "Avenity AI Visibility",
   "description": "Check if a small business appears in AI search (ChatGPT, Perplexity, Google AI Overviews), score their visibility across 4 dimensions, and connect them with Avenity's human expert for implementation. Free. No API key. Perfect for agents serving SMB clients who ask why they're not found in AI search.",
   "categories": ["marketing", "search", "ai-and-machine-learning"],
-  "url": "REPLACE_WITH_RENDER_URL/mcp",
+  "url": "https://avenity-visibility-mcp.onrender.com/mcp",
   "transport": "streamable-http",
-  "githubUrl": "https://github.com/REPLACE_WITH_YOUR_GITHUB_USERNAME/avenity-visibility-mcp",
+  "githubUrl": "https://github.com/DanKaten/avenity-visibility-mcp",
   "tools": [
     {
       "name": "avenity_check_visibility",
