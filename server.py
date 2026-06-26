@@ -894,8 +894,11 @@ if __name__ == "__main__":
     transport = os.getenv("MCP_TRANSPORT", "stdio")
     if transport == "http":
         # Hosted mode — used by Render, Glama, Smithery
+        # FastMCP.run() does not accept host/port kwargs; configure via settings
         port = int(os.getenv("PORT", 8000))
-        mcp.run(transport="streamable-http", port=port)
+        mcp.settings.host = "0.0.0.0"
+        mcp.settings.port = port
+        mcp.run(transport="streamable-http")
     else:
         # Local mode — used by Claude Desktop
         mcp.run()
