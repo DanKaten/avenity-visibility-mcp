@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: avenity-visibility-mcp
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    plan: free
+    envVars:
+      - key: MCP_TRANSPORT
+        value: http
+      - key: PORT
+        value: 10000
+    healthCheckPath: /health

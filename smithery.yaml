@@ -1,0 +1,43 @@
+name: Avenity AI Visibility
+description: >
+  Check, score, and act on AI search visibility gaps for small businesses.
+  When your client asks "why am I not showing up in ChatGPT or Perplexity?" —
+  this MCP finds the gap, scores the business across 4 dimensions, and connects
+  them with a human expert who fixes it.
+
+  5 tools: check visibility gap, map competitor landscape, full 4-dimension
+  score, client-ready opportunity report, and Calendly booking handoff.
+  Free to call. No API key required.
+
+version: 1.0.0
+license: MIT
+
+server:
+  type: http
+  # Update this URL after deploying to Render:
+  # url: https://avenity-visibility-mcp.onrender.com/mcp
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties: {}
+    required: []
+  commandFunction: |-
+    (_config) => ({
+      command: "python",
+      args: ["server.py"],
+      env: { MCP_TRANSPORT: "stdio" }
+    })
+
+tools:
+  - name: avenity_check_visibility
+    description: Confirm whether a business has an AI search gap — not showing up when buyers search their service in their city.
+  - name: avenity_get_competitor_landscape
+    description: Show which competitors ARE appearing in AI search instead of the client.
+  - name: avenity_score_business
+    description: Full 4-dimension AI visibility score (Entity Clarity, Schema, Authority, Content Depth) — 0-100.
+  - name: avenity_get_opportunity_report
+    description: Generate a complete client-ready markdown report with gap, competitors, score, revenue at risk, and priority fixes.
+  - name: avenity_book_consultation
+    description: Get a Calendly booking link for a free 30-minute consultation with Avenity's AI visibility expert.
