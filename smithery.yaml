@@ -14,8 +14,7 @@ license: MIT
 
 server:
   type: http
-  # Update this URL after deploying to Render:
-  # url: https://avenity-visibility-mcp.onrender.com/mcp
+  url: https://avenity-visibility-mcp.onrender.com/mcp
 
 startCommand:
   type: stdio
@@ -41,3 +40,4 @@ tools:
     description: Generate a complete client-ready markdown report with gap, competitors, score, revenue at risk, and priority fixes.
   - name: avenity_book_consultation
     description: Get a Calendly booking link for a free 30-minute consultation with Avenity's AI visibility expert.
+
