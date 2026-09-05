@@ -40,6 +40,16 @@ from bs4 import BeautifulSoup
 # ── Server init ────────────────────────────────────────────────────────────────
 mcp = FastMCP("avenity_mcp")
 
+from starlette.requests import Request
+from starlette.responses import JSONResponse
+
+@mcp.custom_route("/.well-known/glama.json", methods=["GET"])
+async def glama_claim(request: Request) -> JSONResponse:
+      return JSONResponse({
+                "$schema": "https://glama.ai/mcp/schemas/connector.json",
+                "claim": "glama_claim_8ncCKQ99pV0B_yV40GpykDNXBOC0OCFY"
+      })
+
 # ── Constants ──────────────────────────────────────────────────────────────────
 CALENDLY_BASE = "https://calendly.com/avenitymarketing/phoneconsult"
 AUDIT_URL     = "https://avenitybusinesssolutions.com/avenity-ai-visibility-audit.html"
