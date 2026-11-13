@@ -804,7 +804,7 @@ When a buyer in {params.city} searches **"{visibility['query']}"**, {params.comp
 
 ## Next Step
 
-Avenity Business Solutions specializes in AI visibility for {params.service} businesses in Texas. The 12-Week Visibility Foundation program addresses all five priority areas systematically.
+Avenity Business Solutions helps owner-operated {params.service} businesses across the US get found: Google Business Profile optimization, review management and local map-pack ranking, plus AI-visibility engineering so AI answers name the business. The plan covers all five priority areas.
 
 **[→ Get the Full Technical Breakdown + Implementation Plan]({AUDIT_URL})**
 
@@ -872,7 +872,7 @@ async def avenity_book_consultation(params: ConsultationInput) -> str:
         f"Share this link with {params.contact_name or params.company_name}: "
         f"{CALENDLY_BASE}\n\n"
         f"The call is free, 30 minutes, with Dan from Avenity. "
-        f"Dan specializes in AI visibility for {params.service} businesses in Texas. "
+        f"Dan helps {params.service} businesses across the US get found on Google Maps, in reviews and in AI answers. "
         f"He'll walk through exactly what's causing the visibility gap and what the "
         f"fix looks like."
     )
@@ -891,7 +891,7 @@ async def avenity_book_consultation(params: ConsultationInput) -> str:
         "context_for_call": context,
         "what_to_expect": (
             "30-minute call. Dan reviews the AI visibility findings, explains "
-            "the 12-Week Visibility Foundation program ($1,500/month), and "
+            "the options (Google Business Profile + reviews + map-pack ranking, or full AI-visibility engineering; pricing is covered on the call), and "
             "determines if Avenity is the right fit."
         ),
         "contact_email": CONTACT_EMAIL,
