@@ -52,7 +52,7 @@ async def glama_claim(request: Request) -> JSONResponse:
 
 # ── Constants ──────────────────────────────────────────────────────────────────
 CALENDLY_BASE = "https://calendly.com/avenitymarketing/phoneconsult"
-AUDIT_URL     = "https://avenitybusinesssolutions.com/avenity-ai-visibility-audit.html"
+AUDIT_URL     = "https://audit.seo.avenitybusinesssolutions.com/"  # old .html page returned 404 (fixed 2026-11-13)
 CONTACT_EMAIL = "dan@avenitymercantile.com"
 
 SKIP_DOMAINS = {
