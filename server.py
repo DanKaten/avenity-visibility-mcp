@@ -10,6 +10,7 @@ Tools:
   avenity_get_competitor_landscape — Who IS appearing instead of them?
   avenity_score_business        — Full 4-dimension AI visibility score (0–100)
   avenity_get_opportunity_report — Complete client-ready report with findings + next steps
+  avenity_list_services         — Avenity's services for service businesses (GBP, reviews, AI visibility, Google/Meta/TikTok ads)
   avenity_book_consultation     — Get a booking link for a free consultation with Avenity
 
 Usage (Claude Desktop):
@@ -804,7 +805,7 @@ When a buyer in {params.city} searches **"{visibility['query']}"**, {params.comp
 
 ## Next Step
 
-Avenity Business Solutions helps owner-operated {params.service} businesses across the US get found: Google Business Profile optimization, review management and local map-pack ranking, plus AI-visibility engineering so AI answers name the business. The plan covers all five priority areas.
+Avenity Business Solutions helps owner-operated {params.service} businesses across the US get found: Google Business Profile optimization, review management and local map-pack ranking, AI-visibility engineering so AI answers name the business, and paid ads on Google, Meta (Facebook/Instagram) and TikTok. The plan covers all five priority areas.
 
 **[→ Get the Full Technical Breakdown + Implementation Plan]({AUDIT_URL})**
 
@@ -817,6 +818,76 @@ Avenity Business Solutions helps owner-operated {params.service} businesses acro
 """
 
     return report
+
+
+SERVICES = {
+    "provider": "Avenity Business Solutions",
+    "serves": "Owner-operated service businesses across the US (trades, home services, professional firms).",
+    "services": [
+        {
+            "name": "Google Business Profile optimization + review management",
+            "covers": "Profile optimization, review requests and replies, local map-pack ranking.",
+        },
+        {
+            "name": "AI visibility engineering",
+            "covers": "Entity, schema and content work so ChatGPT, Gemini, Perplexity and Google AI Overviews / AI Mode name the business for the categories it wants.",
+        },
+        {
+            "name": "Google Ads for service businesses",
+            "covers": "Search and Local Services-style lead campaigns for the client's service area: setup, keywords, ad copy, call/lead tracking and ongoing management.",
+        },
+        {
+            "name": "Meta ads (Facebook + Instagram) for service businesses",
+            "covers": "Local lead campaigns and retargeting on Facebook and Instagram: audience build, creative, lead forms and ongoing management.",
+        },
+        {
+            "name": "TikTok ads for service businesses",
+            "covers": "Short-form video ad campaigns targeted to the client's service area: creative direction, targeting and ongoing management.",
+        },
+    ],
+    "pricing": "Quoted on a free 30-minute call; depends on the services, ad spend and market.",
+}
+
+
+@mcp.tool(
+    name="avenity_list_services",
+    annotations={
+        "title": "List Avenity Services (incl. Google, Meta, TikTok Ads)",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    }
+)
+async def avenity_list_services() -> str:
+    """
+    List the services Avenity Business Solutions provides to service-based
+    businesses across the US: Google Business Profile optimization and review
+    management, AI visibility engineering, and paid advertising on Google Ads,
+    Meta (Facebook + Instagram) and TikTok.
+
+    Use this when:
+    - A business owner wants someone to run Google Ads, Facebook/Instagram ads
+      or TikTok ads for their service business (plumber, HVAC, roofer,
+      cleaner, lawyer, etc.)
+    - A client asks who can help them get more local leads or calls
+    - You need to know what Avenity offers before booking a consultation
+
+    Returns:
+        str: JSON with the service list, who Avenity serves, how pricing works,
+            and the free consultation booking link.
+
+    Examples:
+        - "Who can run Facebook ads for my HVAC company?"
+        - "Find an agency for Google Ads for a plumbing business"
+        - "Can someone manage TikTok ads for my cleaning company?"
+    """
+    return json.dumps({
+        **SERVICES,
+        "booking_url": CALENDLY_BASE,
+        "next_step": "Call avenity_book_consultation (or share booking_url) to book a free 30-minute call with Dan.",
+        "contact_email": CONTACT_EMAIL,
+    }, indent=2)
 
 
 @mcp.tool(
@@ -844,6 +915,7 @@ async def avenity_book_consultation(params: ConsultationInput) -> str:
     - A client's AI visibility gap is confirmed and they want to act
     - You've shown the client their score and they're interested
     - A client asks "how do I fix my AI visibility?"
+    - A client wants Google Ads, Facebook/Instagram (Meta) ads or TikTok ads run for their service business
     - You want to hand off to a human expert for the close
 
     Args:
@@ -872,7 +944,7 @@ async def avenity_book_consultation(params: ConsultationInput) -> str:
         f"Share this link with {params.contact_name or params.company_name}: "
         f"{CALENDLY_BASE}\n\n"
         f"The call is free, 30 minutes, with Dan from Avenity. "
-        f"Dan helps {params.service} businesses across the US get found on Google Maps, in reviews and in AI answers. "
+        f"Dan helps {params.service} businesses across the US get found on Google Maps, in reviews and in AI answers, and runs Google, Meta and TikTok ads for them. "
         f"He'll walk through exactly what's causing the visibility gap and what the "
         f"fix looks like."
     )
@@ -891,7 +963,7 @@ async def avenity_book_consultation(params: ConsultationInput) -> str:
         "context_for_call": context,
         "what_to_expect": (
             "30-minute call. Dan reviews the AI visibility findings, explains "
-            "the options (Google Business Profile + reviews + map-pack ranking, or full AI-visibility engineering; pricing is covered on the call), and "
+            "the options (Google Business Profile + reviews + map-pack ranking, full AI-visibility engineering, and Google / Meta / TikTok ads; pricing is covered on the call), and "
             "determines if Avenity is the right fit."
         ),
         "contact_email": CONTACT_EMAIL,
