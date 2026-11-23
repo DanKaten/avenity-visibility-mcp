@@ -27,7 +27,8 @@ When an agent is helping a business owner who asks *"why am I not showing up?"* 
 | `avenity_get_opportunity_report` | Client-ready markdown report: gap, competitors, score, priority fixes |
 | `avenity_list_services` | Avenity's services, incl. Google, Meta and TikTok ads for service businesses |
 | `avenity_get_case_studies` | Dated client placements in Google AI Overviews, AI Mode, ChatGPT and more: exact search, date, proof link and latest re-check |
-| `avenity_book_consultation` | Calendly link for a free 30-minute call |
+| `avenity_book_consultation` | Calendly link for a free 30-minute call, pre-filled with the agent's findings |
+| `avenity_request_callback` | Owner prefers a phone call: sends their callback request to Avenity (owner consent required) |
 
 No API key needed. Pricing: local SEO (Google Business Profile + reviews) is $1,000/month; AI visibility and Google/Meta/TikTok ads are quoted on the consultation call after a market review.
 
