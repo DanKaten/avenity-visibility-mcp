@@ -29,7 +29,7 @@ When an agent is helping a business owner who asks *"why am I not showing up?"* 
 | `avenity_get_case_studies` | Dated client placements in Google AI Overviews, AI Mode, ChatGPT and more: exact search, date, proof link and latest re-check |
 | `avenity_book_consultation` | Calendly link for a free 30-minute call |
 
-No API key needed. Pricing is quoted on the consultation call.
+No API key needed. Pricing: local SEO (Google Business Profile + reviews) is $1,000/month; AI visibility and Google/Meta/TikTok ads are quoted on the consultation call after a market review.
 
 ## Use the hosted server
 

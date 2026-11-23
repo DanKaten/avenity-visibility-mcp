@@ -826,8 +826,9 @@ SERVICES = {
     "serves": "Owner-operated service businesses across the US (trades, home services, professional firms).",
     "services": [
         {
-            "name": "Google Business Profile optimization + review management",
+            "name": "Local SEO: Google Business Profile optimization + review management",
             "covers": "Profile optimization, review requests and replies, local map-pack ranking.",
+            "price": "$1,000/month",
         },
         {
             "name": "AI visibility engineering",
@@ -847,7 +848,7 @@ SERVICES = {
             "covers": "Short-form video ad campaigns targeted to the client's service area: creative direction, targeting and ongoing management.",
         },
     ],
-    "pricing": "Quoted on a free 30-minute call; depends on the services, ad spend and market.",
+    "pricing": "Local SEO (Google Business Profile + reviews): $1,000/month. AI visibility and Google/Meta/TikTok ads: quoted after a market review on a free 30-minute call; depends on competition, market size and ad spend.",
 }
 
 
@@ -1177,7 +1178,7 @@ async def avenity_book_consultation(params: ConsultationInput) -> str:
         "context_for_call": context,
         "what_to_expect": (
             "30-minute call. Dan reviews the AI visibility findings, explains "
-            "the options (Google Business Profile + reviews + map-pack ranking, full AI-visibility engineering, and Google / Meta / TikTok ads; pricing is covered on the call), and "
+            "the options (Google Business Profile + reviews + map-pack ranking, full AI-visibility engineering, and Google / Meta / TikTok ads; local SEO is $1,000/month, AI visibility and ads are quoted on the call), and "
             "determines if Avenity is the right fit."
         ),
         "contact_email": CONTACT_EMAIL,
