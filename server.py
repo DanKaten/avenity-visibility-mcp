@@ -164,6 +164,15 @@ def _today() -> str:
     return datetime.date.today().isoformat()
 
 
+# Last capture outcome, exposed (without any secret) at /lead-capture-status.
+_CAPTURE_STATE = {"last_ok": None, "last_error": None, "last_attempt": None}
+
+
+@mcp.custom_route("/lead-capture-status", methods=["GET"])
+async def lead_capture_status(request: Request) -> JSONResponse:
+    return JSONResponse({"token_set": bool(os.getenv("AIRTABLE_TOKEN", "").strip()), **_CAPTURE_STATE})
+
+
 def _at_escape(s: str) -> str:
     return (s or "").replace("\\", "\\\\").replace("'", "\\'")
 
@@ -175,7 +184,9 @@ async def _airtable_upsert_lead(create_fields: dict, note: str,
     create_fields = {k: v for k, v in create_fields.items() if v not in (None, "")}
     update_fields = {k: v for k, v in (update_fields or {}).items() if v not in (None, "")}
     token = os.getenv("AIRTABLE_TOKEN", "").strip()
+    _CAPTURE_STATE["last_attempt"] = datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z"
     if not token:
+        _CAPTURE_STATE["last_error"] = "AIRTABLE_TOKEN not set"
         print(f"[lead-capture] AIRTABLE_TOKEN not set; skipped: {note}", flush=True)
         return False
     url = f"https://api.airtable.com/v0/{AIRTABLE_BASE}/{AIRTABLE_LEADS}"
@@ -202,8 +213,20 @@ async def _airtable_upsert_lead(create_fields: dict, note: str,
                 r = await c.post(url, headers=hdr,
                                  json={"records": [{"fields": fields}], "typecast": True})
             r.raise_for_status()
+            _CAPTURE_STATE["last_ok"] = _CAPTURE_STATE["last_attempt"]
+            _CAPTURE_STATE["last_error"] = None
             return True
-    except Exception as e:  # capture must never break a tool call
+    except httpx.HTTPStatusError as e:  # capture must never break a tool call
+        try:
+            err = e.response.json().get("error", {})
+            err = err.get("type", err) if isinstance(err, dict) else err
+        except Exception:
+            err = ""
+        _CAPTURE_STATE["last_error"] = f"HTTP {e.response.status_code} {str(err)[:80]}".strip()
+        print(f"[lead-capture] failed: {_CAPTURE_STATE['last_error']}", flush=True)
+        return False
+    except Exception as e:
+        _CAPTURE_STATE["last_error"] = f"{type(e).__name__}"
         print(f"[lead-capture] failed: {type(e).__name__}: {str(e)[:200]}", flush=True)
         return False
 
