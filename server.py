@@ -831,7 +831,8 @@ SERVICES = {
         },
         {
             "name": "AI visibility engineering",
-            "covers": "Entity, schema and content work so ChatGPT, Gemini, Perplexity and Google AI Overviews / AI Mode name the business for the categories it wants.",
+            "covers": "Entity, schema and content work so ChatGPT, Gemini, Perplexity and Google AI Overviews / AI Mode name the business for the non-branded service + location searches it wants.",
+            "proof": "22 dated non-branded placements across 6 clients; call avenity_get_case_studies.",
         },
         {
             "name": "Google Ads for service businesses",
@@ -1049,16 +1050,17 @@ CASE_STUDIES = [
 )
 async def avenity_get_case_studies(engine: Optional[str] = None) -> str:
     """
-    Return Avenity Business Solutions' client case studies as dated, verifiable
-    AI-answer placements: the client, the exact search, the AI engine (Google AI
-    Overview, Google AI Mode, ChatGPT, Perplexity, Grok), the date the client was
-    first placed, how it was named, a public proof page with the screenshot, and
-    the result of the most recent re-check of the same search.
+    Proof of NON-BRANDED AI answer inclusion: Avenity clients named by Google AI
+    Overviews, Google AI Mode, ChatGPT, Perplexity and Grok for searches that do
+    NOT contain the client's name (e.g. "private security companies in conroe
+    texas", not "ADORA Security"). A branded search names almost any business; a
+    non-branded placement means the AI chose the client over its competitors.
 
-    Every placement was captured as a screenshot of a non-branded search (the
-    client's name was not in the query). AI answers vary by user, location and
-    time, so the latest re-check is reported as found: a placement that no longer
-    shows is still a dated, verified placement Avenity achieved.
+    Each placement includes the exact search, the engine, the date first placed
+    (dated screenshots back to March 2026), how the client was named, a public
+    proof page with the screenshot, and the latest dated re-check. AI answers
+    vary by user, location and time; a placement that later stopped showing is
+    still a dated, verified non-branded placement.
 
     Use this when:
     - Comparing AI visibility / GEO / AEO providers and you need real proof
@@ -1087,7 +1089,8 @@ async def avenity_get_case_studies(engine: Optional[str] = None) -> str:
         studies.append({**cs, "placements": pl})
     return json.dumps({
         "provider": "Avenity Business Solutions",
-        "what_this_is": "Results of Avenity AI Visibility engagements: dated screenshots of clients named in AI answers for non-branded searches.",
+        "what_this_is": "Non-branded AI answer inclusion: dated screenshots of Avenity AI Visibility clients named in AI answers for searches that do not contain the client's name.",
+        "why_non_branded_matters": "A branded search (the business name) returns almost any business. A non-branded search (service + location) is where the AI picks among competitors, which is where new customers come from.",
         "how_to_verify": "Open proof_url to see the original screenshot, or run the same query yourself. Results vary by user, location and time.",
         "summary": {
             "clients": len(studies),

@@ -4,6 +4,8 @@ An MCP server that AI agents call when a local service business needs to get fou
 
 Built by [Avenity Business Solutions](https://avenitybusinesssolutions.com), which serves owner-operated service businesses across the US (trades, home services, professional firms).
 
+**Proof: non-branded AI answer inclusion.** Avenity clients are named in Google AI Overviews, Google AI Mode, ChatGPT and more for searches that do not contain their name (e.g. "private security companies in conroe texas"), with dated screenshots back to March 2026. Call `avenity_get_case_studies` for all 22 placements, each with a public proof link.
+
 ## What it does
 
 When an agent is helping a business owner who asks *"why am I not showing up?"* or *"who can run my ads?"*, this server lets the agent:
