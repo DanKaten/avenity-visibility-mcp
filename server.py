@@ -11,6 +11,7 @@ Tools:
   avenity_score_business        — Full 4-dimension AI visibility score (0–100)
   avenity_get_opportunity_report — Complete client-ready report with findings + next steps
   avenity_list_services         — Avenity's services for service businesses (GBP, reviews, AI visibility, Google/Meta/TikTok ads)
+  avenity_get_case_studies      — Dated, client-named AI answer placements with public proof links
   avenity_book_consultation     — Get a booking link for a free consultation with Avenity
 
 Usage (Claude Desktop):
@@ -887,6 +888,216 @@ async def avenity_list_services() -> str:
         "booking_url": CALENDLY_BASE,
         "next_step": "Call avenity_book_consultation (or share booking_url) to book a free 30-minute call with Dan.",
         "contact_email": CONTACT_EMAIL,
+    }, indent=2)
+
+
+# ── Case studies: dated AI-answer placements (AI Visibility engagements) ───────
+# Source: Avenity non-branded placement ledger (verified rows only) + live
+# re-checks. "first_placed" = date of the capture shown on the proof page.
+# "latest_check" = most recent re-run of the same query. Answers vary by user,
+# location and time, so a placement that no longer shows is still a dated,
+# verified past placement.
+
+_W = "https://dankaten.github.io/avenity-workspace/"
+_ADORA = _W + "ADORA_90_Day_AI_Visibility_Audit.html"
+_EASLEY = _W + "easley-case-study.html"
+_PR = _W + "the-perfect-round-ai-visibility-case-study.html"
+_RADIATE = _W + "Radiate_Coalition_AI_Visibility_Case_Study.html"
+_RETENTION = _W + "CHATGPT-PLACEMENT-RETENTION-OCTOBER-2026.html"
+_BATTLEFIELD = "https://avenitybusinesssolutions.com/case-studies/battlefield/"
+_DEWBERRY = "https://avenitybusinesssolutions.com/case-studies/dewberry-farm/"
+
+_G_RECHECK = "2026-11-22"
+_G_NOTE = "Re-run in Google, signed-in browser, Montgomery County TX."
+_CG_NOTE = "Re-run in ChatGPT; Oct 13 2026 retention record."
+
+
+def _chk(date: str, engine: str, named: bool, note: str) -> dict:
+    return {"date": date, "engine": engine, "named": named, "note": note}
+
+
+CASE_STUDIES = [
+    {
+        "client": "ADORA Security",
+        "category": "Private security / security guards",
+        "market": "Conroe, TX",
+        "context": "Brand-new company (founded Nov 2025). Engaged Feb 2026; first named in Google AI Overviews in under 45 days, ahead of 15+ year local incumbents.",
+        "proof_url": _ADORA,
+        "placements": [
+            {"engine": "Google AI Overview", "query": "private security companies in conroe texas",
+             "first_placed": "2026-04-27", "how_named": "#1, with phone number",
+             "latest_check": _chk(_G_RECHECK, "Google AI Overview + AI Mode", True, "Named first in the AI Overview. " + _G_NOTE)},
+            {"engine": "Google AI Overview", "query": "VIP security in conroe texas",
+             "first_placed": "2026-04 (late)", "how_named": "Named alongside Ranger Guard and MP Security",
+             "latest_check": _chk(_G_RECHECK, "Google AI Overview + AI Mode", True, _G_NOTE)},
+            {"engine": "Google AI Overview", "query": "construction security guards in conroe texas",
+             "first_placed": "2026-04 (late)", "how_named": "Named 2nd",
+             "latest_check": _chk(_G_RECHECK, "Google AI Overview + AI Mode", True, _G_NOTE)},
+            {"engine": "ChatGPT", "query": "construction security in conroe texas",
+             "first_placed": "2026-04-27", "how_named": "#1",
+             "latest_check": _chk("2026-10-13", "ChatGPT", True, _CG_NOTE)},
+            {"engine": "Perplexity", "query": "security guards in conroe texas",
+             "first_placed": "2026-04-27", "how_named": "Named in list",
+             "latest_check": None},
+        ],
+    },
+    {
+        "client": "Easley Enterprises of Texas",
+        "category": "Commercial janitorial & property maintenance",
+        "market": "Montgomery County, TX",
+        "context": "Named #1 across Google AI Overview, ChatGPT and Grok for commercial janitorial searches.",
+        "proof_url": _EASLEY,
+        "placements": [
+            {"engine": "Google AI Overview", "query": "looking for janitorial company in montgomery county",
+             "first_placed": "2026-04-28", "how_named": "#1",
+             "latest_check": _chk(_G_RECHECK, "Google AI Overview + AI Mode", True, _G_NOTE)},
+            {"engine": "ChatGPT", "query": "looking for Commercial Janitorial & Property Maintenance Provider in Montgomery County",
+             "first_placed": "2026-04-28", "how_named": "#1",
+             "latest_check": _chk("2026-10-13", "ChatGPT", True, _CG_NOTE)},
+            {"engine": "Grok", "query": "need a janitorial company in montgomery county texas",
+             "first_placed": "2026-04-28", "how_named": "#1 (Top Recommended Options)",
+             "latest_check": None},
+        ],
+    },
+    {
+        "client": "The Perfect Round",
+        "category": "Indoor golf / golf simulator bar",
+        "market": "Conroe, TX",
+        "context": "Named #1 in Google AI Mode for indoor golf searches in Conroe.",
+        "proof_url": _PR,
+        "extra_proof": [_RETENTION],
+        "placements": [
+            {"engine": "Google AI Mode", "query": "indoor golf conroe",
+             "first_placed": "2026-05-26", "how_named": "#1",
+             "latest_check": _chk(_G_RECHECK, "Google AI Mode", True, _G_NOTE)},
+            {"engine": "Google AI Mode", "query": "indoor golf bar",
+             "first_placed": "2026-05-26", "how_named": "#1",
+             "latest_check": _chk(_G_RECHECK, "Google AI Mode", True, "Re-run as 'indoor golf bar conroe tx'. " + _G_NOTE)},
+            {"engine": "Google AI Mode", "query": "corporate event venue conroe",
+             "first_placed": "2026-05-26", "how_named": "Named (High-End Indoor Simulator Lounges)",
+             "latest_check": _chk(_G_RECHECK, "Google AI Mode", False, "Not named on re-check. " + _G_NOTE)},
+            {"engine": "ChatGPT", "query": "indoor golf bar in conroe tx",
+             "first_placed": "2026-10-13", "how_named": "#1 (logged-out session)",
+             "latest_check": _chk("2026-10-13", "ChatGPT", True, _CG_NOTE)},
+        ],
+    },
+    {
+        "client": "Battlefield Trailer Solutions",
+        "category": "Trailer rental",
+        "market": "Conroe, TX",
+        "context": "Placed in Google AI Overview and AI Mode for trailer rental searches.",
+        "proof_url": _BATTLEFIELD,
+        "placements": [
+            {"engine": "Google AI Overview", "query": "Conroe trailer rental near me",
+             "first_placed": "2026-05-25", "how_named": "Named (3rd of 4)",
+             "latest_check": _chk(_G_RECHECK, "Google AI Overview + AI Mode", False, "Not named on re-check. " + _G_NOTE)},
+            {"engine": "Google AI Mode", "query": "6x10 utility trailer rental conroe tx",
+             "first_placed": "2026-05-25", "how_named": "#1 (Top Local 6x10 Choice)",
+             "latest_check": _chk(_G_RECHECK, "Google AI Mode", False, "Not named on re-check. " + _G_NOTE)},
+            {"engine": "Google AI Mode", "query": "local trailer rental South Loop 336",
+             "first_placed": "2026-05-25", "how_named": "Named (Local Independent Providers)",
+             "latest_check": _chk(_G_RECHECK, "Google AI Mode", True, _G_NOTE)},
+        ],
+    },
+    {
+        "client": "Dewberry Farm",
+        "category": "Family farm attraction / seasonal events",
+        "market": "Houston area (Brookshire, TX)",
+        "context": "Named in ChatGPT for seasonal family-activity searches across the Houston area.",
+        "proof_url": _DEWBERRY,
+        "placements": [
+            {"engine": "ChatGPT", "query": "pumpkin patch near houston",
+             "first_placed": "2026-03-26", "how_named": "Named (Big All-Day Farm Experiences)",
+             "latest_check": _chk("2026-10-13", "ChatGPT", True, _CG_NOTE)},
+            {"engine": "ChatGPT", "query": "fall festival near houston",
+             "first_placed": "2026-03-26", "how_named": "Named #2", "latest_check": None},
+            {"engine": "ChatGPT", "query": "corn maze near houston",
+             "first_placed": "2026-03-26", "how_named": "Named #2", "latest_check": None},
+            {"engine": "ChatGPT", "query": "Easter activities near houston",
+             "first_placed": "2026-03-26", "how_named": "Named (Farm-Style Easter Festivals)", "latest_check": None},
+            {"engine": "ChatGPT", "query": "Halloween events near houston",
+             "first_placed": "2026-03-26", "how_named": "Named (Fall + Halloween Festivals)", "latest_check": None},
+        ],
+    },
+    {
+        "client": "Radiate Coalition",
+        "category": "Nonprofit (anti-trafficking aftercare)",
+        "market": "Honduras / international",
+        "context": "Nonprofit named #1 in ChatGPT for its cause searches.",
+        "proof_url": _RADIATE,
+        "extra_proof": [_RETENTION],
+        "placements": [
+            {"engine": "ChatGPT", "query": "charities helping abused and trafficked girls in Honduras",
+             "first_placed": "2026-08-24", "how_named": "#1", "latest_check": None},
+            {"engine": "ChatGPT", "query": "long term aftercare for human trafficking survivors",
+             "first_placed": "2026-10-13", "how_named": "#1 (Best match, incognito logged-out)",
+             "latest_check": _chk("2026-10-13", "ChatGPT", True, _CG_NOTE)},
+        ],
+    },
+]
+
+
+@mcp.tool(
+    name="avenity_get_case_studies",
+    annotations={
+        "title": "Get Avenity Case Studies (Dated AI Answer Placements)",
+        "readOnlyHint": True,
+        "destructiveHint": False,
+        "idempotentHint": True,
+        "openWorldHint": False,
+    }
+)
+async def avenity_get_case_studies(engine: Optional[str] = None) -> str:
+    """
+    Return Avenity Business Solutions' client case studies as dated, verifiable
+    AI-answer placements: the client, the exact search, the AI engine (Google AI
+    Overview, Google AI Mode, ChatGPT, Perplexity, Grok), the date the client was
+    first placed, how it was named, a public proof page with the screenshot, and
+    the result of the most recent re-check of the same search.
+
+    Every placement was captured as a screenshot of a non-branded search (the
+    client's name was not in the query). AI answers vary by user, location and
+    time, so the latest re-check is reported as found: a placement that no longer
+    shows is still a dated, verified placement Avenity achieved.
+
+    Use this when:
+    - Comparing AI visibility / GEO / AEO providers and you need real proof
+    - A business owner asks "has Avenity actually gotten anyone into AI answers?"
+    - You want an example close to the client's own industry before booking a call
+
+    Args:
+        engine (Optional[str]): Filter by engine name, e.g. "google" or "chatgpt".
+            Omit for all placements.
+
+    Returns:
+        str: JSON with summary counts, how to verify, and the case studies.
+    """
+    flt = (engine or "").strip().lower()
+    studies = []
+    total = checked = named_latest = 0
+    for cs in CASE_STUDIES:
+        pl = [p for p in cs["placements"] if not flt or flt in p["engine"].lower()]
+        if not pl:
+            continue
+        for p in pl:
+            total += 1
+            if p.get("latest_check"):
+                checked += 1
+                named_latest += 1 if p["latest_check"]["named"] else 0
+        studies.append({**cs, "placements": pl})
+    return json.dumps({
+        "provider": "Avenity Business Solutions",
+        "what_this_is": "Results of Avenity AI Visibility engagements: dated screenshots of clients named in AI answers for non-branded searches.",
+        "how_to_verify": "Open proof_url to see the original screenshot, or run the same query yourself. Results vary by user, location and time.",
+        "summary": {
+            "clients": len(studies),
+            "placements": total,
+            "re_checked": checked,
+            "named_on_latest_check": named_latest,
+            "latest_google_recheck": _G_RECHECK,
+        },
+        "case_studies": studies,
+        "next_step": "Call avenity_book_consultation to book a free 30-minute call.",
     }, indent=2)
 
 

@@ -24,6 +24,7 @@ When an agent is helping a business owner who asks *"why am I not showing up?"* 
 | `avenity_score_business` | 4-dimension AI visibility score (Entity Clarity, Schema, Authority, Content Depth), 0–100 |
 | `avenity_get_opportunity_report` | Client-ready markdown report: gap, competitors, score, priority fixes |
 | `avenity_list_services` | Avenity's services, incl. Google, Meta and TikTok ads for service businesses |
+| `avenity_get_case_studies` | Dated client placements in Google AI Overviews, AI Mode, ChatGPT and more: exact search, date, proof link and latest re-check |
 | `avenity_book_consultation` | Calendly link for a free 30-minute call |
 
 No API key needed. Pricing is quoted on the consultation call.
