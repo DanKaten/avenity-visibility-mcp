@@ -1,5 +1,7 @@
 # Avenity AI Visibility MCP Server
 
+[![DanKaten/avenity-visibility-mcp MCP server](https://glama.ai/mcp/servers/DanKaten/avenity-visibility-mcp/badges/score.svg)](https://glama.ai/mcp/servers/DanKaten/avenity-visibility-mcp)
+
 An MCP server that AI agents call when a local service business needs to get found: in AI search answers (ChatGPT, Perplexity, Google AI Overviews / AI Mode), on Google Maps, and through paid ads.
 
 Built by [Avenity Business Solutions](https://avenitybusinesssolutions.com), which serves owner-operated service businesses across the US (trades, home services, professional firms).
